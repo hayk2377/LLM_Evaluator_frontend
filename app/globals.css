@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html { scroll-behavior: smooth; }
+
+.chart-container{ height: 350px; }
+
+/* Lightweight motion utilities (respects reduced motion) */
+@keyframes fade-in-up { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes slide-in-left { from { opacity: 0; transform: translate3d(-16px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes slide-in-right { from { opacity: 0; transform: translate3d(16px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes zoom-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none !important; }
+}
+
+
+.animate-fade-in-up { animation: fade-in-up 800ms cubic-bezier(0.21, 1, 0.21, 1) both; }
+.animate-fade-in-up-slow { animation: fade-in-up 1000ms cubic-bezier(0.21, 1, 0.21, 1) both; }
+.animate-slide-in-left { animation: slide-in-left 1000ms cubic-bezier(0.21, 1, 0.21, 1) both; }
+.animate-slide-in-right { animation: slide-in-right 1000ms cubic-bezier(0.21, 1, 0.21, 1) both; }
+.animate-zoom-in { animation: zoom-in 1000ms cubic-bezier(0.21, 1, 0.21, 1) both; }
+
+.animation-delay-0 { animation-delay: 0ms; }
+.animation-delay-1 { animation-delay: 150ms; }
+.animation-delay-2 { animation-delay: 300ms; }
+.animation-delay-3 { animation-delay: 450ms; }
+.animation-delay-4 { animation-delay: 600ms; }
+.animation-delay-5 { animation-delay: 750ms; }

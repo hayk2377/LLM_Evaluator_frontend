@@ -1,0 +1,24 @@
+{
+  "name": "llm-dashboard-ssr",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "node -e \"try{require('tailwindcss')&&console.log('tailwind ready')}catch(e){}\""
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
+    "autoprefixer": "^10.4.20",
+    "lucide-react": "^0.441.0",
+    "next": "^14.2.6",
+    "postcss": "^8.4.47",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2",
+    "recharts": "^2.12.7",
+    "tailwindcss": "^3.4.13"
+  }
+}
