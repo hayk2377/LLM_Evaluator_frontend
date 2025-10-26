@@ -42,8 +42,8 @@ export default function ResultsCarousel({ results }) {
             metrics={{
               ttr: current.ttr,
               coverage: current.coverage,
-              sentenceCount: current.sentenceCount,
-              avgWordLength: current.avgWordLength,
+              fkGrade: current.fkGrade,
+              nonRepetition: current.nonRepetition,
             }}
           />
         </div>

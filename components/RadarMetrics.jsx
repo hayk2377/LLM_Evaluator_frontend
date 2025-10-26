@@ -21,22 +21,22 @@ function transposeForRadar(results) {
     name: r.label,
     TTR: Number(r.ttr),
     Coverage: Number(r.coverage),
-    Sentences: Number(r.sentenceCount),
-    AvgWL: Number(r.avgWordLength) * 10,
+    FKGrade: Number(r.fkGrade),
+    NonRepetition: Number(r.nonRepetition),
   }));
 
   const aggregated = {
     ttrMax: Math.max(...chartData.map(d => d.TTR), 1),
     coverageMax: Math.max(...chartData.map(d => d.Coverage), 1),
-    sentencesMax: Math.max(...chartData.map(d => d.Sentences), 1),
-    avgWLMax: Math.max(...chartData.map(d => d.AvgWL), 1),
+    fkMax: Math.max(...chartData.map(d => d.FKGrade), 1),
+    nrMax: Math.max(...chartData.map(d => d.NonRepetition), 1),
   };
 
   const metrics = [
     { key: 'TTR', subject: 'Lexical Diversity', max: aggregated.ttrMax },
     { key: 'Coverage', subject: 'Query Coverage', max: aggregated.coverageMax },
-    { key: 'Sentences', subject: 'Structural Depth', max: aggregated.sentencesMax },
-    { key: 'AvgWL', subject: 'Complexity Proxy', max: aggregated.avgWLMax },
+    { key: 'FKGrade', subject: 'Readability (FK Grade)', max: aggregated.fkMax },
+    { key: 'NonRepetition', subject: 'Non‑Repetition', max: aggregated.nrMax },
   ];
 
   return metrics.map(metric => {

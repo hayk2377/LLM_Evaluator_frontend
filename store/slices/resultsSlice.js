@@ -1,7 +1,7 @@
 "use client";
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { calculateAllMetrics } from '../../lib/metrics';
+import { calculateTTR, calculateQueryCoverage } from '../../lib/metrics';
 import { getComparisonSets } from '../../lib/utils';
 import { postPromptTest } from '../../lib/api';
 import { rotateModels } from '../../lib/modelRotation';
@@ -34,10 +34,18 @@ export const generateAndEvaluate = createAsyncThunk(
       const metrics = m ? {
         ttr: m.lexical_diversity ?? m.ttr ?? 0,
         coverage: m.query_coverage ?? m.coverage ?? 0,
-        sentenceCount: m.sentence_count ?? m.sentenceCount ?? 0,
-        avgWordLength: m.avg_word_length ?? m.avgWordLength ?? 0,
+        // New metrics (use if provided by backend)
+        fkGrade: m.fk_grade ?? m.fkGrade ?? m.norm_fk_grade ?? null,
+        nonRepetition: m.repetition_penalty ?? m.non_repetition ?? m.norm_repetition_penalty ?? null,
         wordCount: responseText ? (responseText.split(/\s+/).filter(w=>w).length) : 0,
-      } : calculateAllMetrics(prompt, responseText);
+      } : {
+        // Fallback: compute ttr and coverage client-side; leave new metrics as null
+        ttr: calculateTTR(responseText),
+        coverage: calculateQueryCoverage(prompt, responseText),
+        wordCount: responseText ? (responseText.split(/\s+/).filter(w=>w).length) : 0,
+        fkGrade: null,
+        nonRepetition: null,
+      };
       return {
         id: i,
         label: set.label || `T=${set.T.toFixed(2)} P=${set.P.toFixed(2)}`,

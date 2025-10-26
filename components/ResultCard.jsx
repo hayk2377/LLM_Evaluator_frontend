@@ -11,10 +11,10 @@ export default function ResultCard({ title, text, metrics }) {
         {text || <span className="text-gray-400">No output</span>}
       </div>
       <div className="grid grid-cols-2 gap-3 mt-4">
-        <MetricCard title="TTR" value={Number(metrics?.ttr ?? 0).toFixed(1)} unit="%" />
-        <MetricCard title="Coverage" value={Number(metrics?.coverage ?? 0).toFixed(1)} unit="%" />
-        <MetricCard title="Sentences" value={Number(metrics?.sentenceCount ?? metrics?.sentence_count ?? 0)} />
-        <MetricCard title="Avg WL" value={Number(metrics?.avgWordLength ?? metrics?.avg_word_length ?? 0).toFixed(2)} />
+        <MetricCard title="TTR" value={metrics?.ttr} unit="%" precision={1} />
+        <MetricCard title="Coverage" value={metrics?.coverage} unit="%" precision={1} />
+        <MetricCard title="FK Grade" value={metrics?.fkGrade} precision={1} />
+        <MetricCard title="Non‑Repetition" value={metrics?.nonRepetition} precision={1} />
       </div>
     </div>
   );

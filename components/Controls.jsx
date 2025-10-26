@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SlidersHorizontal, Plus, X } from 'lucide-react';
 import { 
   setComparisonMode, setBaseTemperature, setBaseTopP, setPrompt,
-  addCustomSet, removeCustomSet,setView
+  addCustomSet, removeCustomSet, setView
 } from '../store/slices/settingsSlice';
 import { generateId } from '../lib/utils';
 import { generateAndEvaluate } from '../store/slices/resultsSlice';
@@ -130,7 +130,7 @@ export default function Controls() {
 
         {/* Removed heatmap metric controllers and filters for simplicity */}
 
-        <button onClick={() => {dispatch(setView('results')); dispatch(generateAndEvaluate())}} disabled={resultsLoading || !settings.prompt.trim() || (settings.comparisonMode === 'custom' && settings.customSets.length === 0)} className={`w-full py-3 px-6 rounded-xl font-semibold text-lg transition duration-300 ease-in-out flex items-center justify-center ${resultsLoading ? 'bg-indigo-300 text-indigo-700 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg'}`}>
+        <button onClick={() => { dispatch(setView('results')); dispatch(generateAndEvaluate()); }} disabled={resultsLoading || !settings.prompt.trim() || (settings.comparisonMode === 'custom' && settings.customSets.length === 0)} className={`w-full py-3 px-6 rounded-xl font-semibold text-lg transition duration-300 ease-in-out flex items-center justify-center ${resultsLoading ? 'bg-indigo-300 text-indigo-700 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg'}`}>
           {resultsLoading ? 'Generating Responses & Calculating Metrics...' : 'Generate & Analyze Comparison Sets'}
         </button>
       </div>
